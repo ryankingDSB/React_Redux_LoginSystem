@@ -24,9 +24,13 @@ class LoginForm extends React.Component {
 
     validate = (data) => {
         const errors = {};
-        if(!validator.isEmail(data.email)) errors.email = "Invalid email";
+        
+        if(!data.email) errors.email = "Can't be blank";
+        else if(!validator.isEmail(data.email)) errors.email = "Invalid email";
+
         if(!data.password) errors.password = "Can't be blank";
-        if(data.password.length < 8 && data.password) errors.password = "Has to be more than 8 characters"; 
+        else if(data.password.length < 8 && data.password) errors.password = "Has to be more than 8 characters"; 
+
         return errors;
     }
 
